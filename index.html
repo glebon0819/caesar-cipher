@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Caesar Test</title>
+		<script src="caesar.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				const cipher = new caesarCipher($("#text").val(), $("#offset").val())
+				
+			    $("#e-button").click(function(){
+			    	if(parseInt($("#offset").val()) >= 0 && parseInt($("#offset").val()) <= 25){
+			        cipher.text = $("#text").val();
+			        cipher.offset = $("#offset").val();
+			        var value = cipher.encrypt();
+			        console.log(value);
+			        if(value){
+			        	$("#text").val(value);
+			        }
+			    	} else {
+			    		console.log("Offset must be an integer between 0 and 25");
+			    	}
+			    });
+			    $("#d-button").click(function(){
+			    	if(parseInt($("#offset").val()) >= 0 && parseInt($("#offset").val()) <= 25){
+			    		cipher.text = $("#text").val();
+			        cipher.offset = $("#offset").val();
+			        var dvalue = cipher.decrypt();
+			        console.log(dvalue);
+			        if(dvalue){
+			        	$("#text").val(dvalue);
+			        }
+			    	} else {
+			    		console.log("Offset must be an integer between 0 and 25");
+			    	}
+			    });
+				
+			});
+		</script>
+		<style>
+			#container {
+				width:50%;
+				margin-left: auto;
+    		margin-right: auto;
+			}
+			.center {
+				width:100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<h2>This page was designed to test the Caesar Cipher class that I made.</h2>
+			<form>
+				<p>Encode/Decode Text:</p>
+				<textarea class="center" id="text" placeholder="Text you want to encode/decode" rows="5"></textarea><br />
+				<p>Offset:</p>
+				<input type="number" id="offset" value="0" min="0" max="25" /><br /><br />
+				<button type="button" id="e-button">Encode Text</button>
+				<button type="button" id="d-button">Decode Text</button>
+			</form>
+		</div>
+	</body>
+</html>
